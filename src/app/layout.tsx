@@ -1,6 +1,9 @@
+import "./globals.css";
+import Header from "@/components/Header/Header";
+import PromtBox from "@/components/PromtBox/PromtBox";
+import SideBar from "@/components/SideBar/SideBar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +19,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+
+        <div className="flex items-center justify-between h-screen">
+          {/* sidebar */}
+          <SideBar />
+
+          <div className="flex flex-col justify-between items-center overflow-hidden w-full bg-[#212121] h-[100vh]">
+            <Header />
+            {children}
+            <PromtBox />
+          </div>
+
+        </div>
+
+      </body>
     </html>
   );
 }
