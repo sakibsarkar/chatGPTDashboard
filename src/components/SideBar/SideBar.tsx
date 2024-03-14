@@ -9,7 +9,7 @@ const SideBar = () => {
 
     const { showSidebar, setShowSideBar } = useContext(StateContext)
     const sidebarHideStyle = {
-        width: "0px",
+        maxWidth: "0px",
         height: "0px",
         overflow: "hidden",
         padding: "0px",
@@ -20,12 +20,22 @@ const SideBar = () => {
     const Arrow = showSidebar ? FaArrowLeft : FaArrowRight
 
     return (
-        <div className="fixed left-0 top-0 w-[260px] p-[15px] h-screen bg-[#171717] text-white duration-[0.3s] sm:relative" style={showSidebar ? {} : { width: "0px", padding: "0px", transition: "0.3s" }}>
+        <div className="fixed left-0 top-0 min-w-[260px] max-w-[260px] p-[15px] h-screen bg-[#171717] text-white duration-[0.3s] sm:relative" style={showSidebar ? {} : { minWidth: "0px", padding: "0px", transition: "0.3s" }}>
 
-            {/* close open button */}
+            {/* open or close button for large device*/}
             <button onClick={() => setShowSideBar(!showSidebar)} className="hidden sm:flex absolute top-[50%] right-[-35px]">
                 <Arrow />
             </button>
+
+            {/* close button for small device */}
+
+            {
+                showSidebar ?
+                    <button className="absolute right-[-50px] bg-[#201f1fe3] w-[40px] h-[40px] rounded-sm border-[1.5px] border-white sm:hidden" onClick={() => setShowSideBar(false)}>
+                        X
+                    </button> :
+                    ""
+            }
 
             <nav className="h-full" style={applyStyle}>
                 <div className="flex flex-col items-center justify-between w-full h-full gap-[25px]">
