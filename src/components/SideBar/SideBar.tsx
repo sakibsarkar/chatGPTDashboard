@@ -1,11 +1,33 @@
+"use client";
 import Link from "next/link";
-import { FaPenToSquare } from "react-icons/fa6";
+import { useContext } from "react";
+import { FaArrowLeft, FaArrowRight, FaPenToSquare } from "react-icons/fa6";
+import { StateContext } from "@/providers/ContextProvider";
 import { chatTitles } from "@/utils/mock/chatTitles";
 
 const SideBar = () => {
+
+    const { showSidebar, setShowSideBar } = useContext(StateContext)
+    const sidebarHideStyle = {
+        width: "0px",
+        height: "0px",
+        overflow: "hidden",
+        padding: "0px",
+    }
+
+    const applyStyle = showSidebar ? {} : sidebarHideStyle
+
+    const Arrow = showSidebar ? FaArrowLeft : FaArrowRight
+
     return (
-        <div className="sm:max-w-[260px] p-[15px] h-screen bg-[#171717] text-white ">
-            <nav className="h-full">
+        <div className="fixed left-0 top-0 w-[260px] p-[15px] h-screen bg-[#171717] text-white duration-[0.3s] sm:relative" style={showSidebar ? {} : { width: "0px", padding: "0px", transition: "0.3s" }}>
+
+            {/* close open button */}
+            <button onClick={() => setShowSideBar(!showSidebar)} className="hidden sm:flex absolute top-[50%] right-[-35px]">
+                <Arrow />
+            </button>
+
+            <nav className="h-full" style={applyStyle}>
                 <div className="flex flex-col items-center justify-between w-full h-full gap-[25px]">
 
                     {/* side bar top section */}
