@@ -14,7 +14,7 @@ const Header = () => {
     return (
         <header className="w-full">
             <div className="w-full h-[62px] flex justify-between sm:justify-start items-center text-white p-[8px]">
-                <button className="sm:hidden" onClick={handleToggle}><HiMenuAlt1 /></button>
+                <button className="sm:hidden text-[25px]" onClick={handleToggle}><HiMenuAlt1 /></button>
                 <h1 className="px-[8px] py-[12px] hover:bg-[#8c8c8c46] rounded-lg cursor-pointer">ChatGPT 3.5</h1>
             </div>
         </header>
