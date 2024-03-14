@@ -1,10 +1,12 @@
 import "./globals.css";
 import ContextProvider from "@/providers/ContextProvider";
 import Header from "@/components/Header/Header";
+import Loader from "@/components/Loader";
 import PromtBox from "@/components/PromtBox/PromtBox";
 import SideBar from "@/components/SideBar/SideBar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,19 +24,21 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
 
-        <ContextProvider>
-          <div className="flex items-center justify-between h-screen">
-            {/* sidebar */}
-            <SideBar />
+        <Suspense fallback={<Loader />} >
+          <ContextProvider>
+            <div className="flex items-center justify-between h-screen">
+              {/* sidebar */}
+              <SideBar />
 
-            <div className="flex flex-col justify-between items-center overflow-hidden w-full bg-[#212121] h-[100vh]">
-              <Header />
-              {children}
-              <PromtBox />
+              <div className="flex flex-col justify-between items-center overflow-hidden w-full bg-[#212121] h-[100vh]">
+                <Header />
+                {children}
+                <PromtBox />
+              </div>
+
             </div>
-
-          </div>
-        </ContextProvider>
+          </ContextProvider>
+        </Suspense>
 
       </body>
     </html>

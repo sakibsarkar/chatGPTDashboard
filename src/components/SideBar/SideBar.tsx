@@ -1,13 +1,16 @@
 "use client";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import { useContext } from "react";
 import { FaArrowLeft, FaArrowRight, FaPenToSquare } from "react-icons/fa6";
 import { StateContext } from "@/providers/ContextProvider";
 import { chatTitles } from "@/utils/mock/chatTitles";
 
 const SideBar = () => {
-
+    const { title } = useParams()
+    const chatTitle = title?.toString().split("%20").join(" ")
     const { showSidebar, setShowSideBar } = useContext(StateContext)
+
     const sidebarHideStyle = {
         maxWidth: "0px",
         height: "0px",
@@ -57,8 +60,8 @@ const SideBar = () => {
                         {
                             chatTitles.map((chat, i) => <Link
                                 key={i}
-                                href={"/chat"}
-                                className="w-full text-[14px] px-[8px] py-[8px] hover:bg-[#8b8b8ba2] rounded-lg"
+                                href={`/chat/${chat}`}
+                                className={`w-full text-[14px] px-[8px] py-[8px] hover:bg-hoverColor rounded-lg ${chatTitle === chat ? "activeChat" : ""}`}
                             >
                                 {chat}
                             </Link>)
