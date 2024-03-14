@@ -8,9 +8,16 @@
 
 .smoothBar::-webkit-scrollbar {
     width: 5px;
+    opacity: 1;
+
 }
 
+
 .smoothBar::-webkit-scrollbar-thumb {
-    background-color: #8c8c8c;
+    background-color: transparent;
     border-radius: 5px;
+}
+
+.smoothBar:hover::-webkit-scrollbar-thumb {
+    background-color: #626262;
 }
