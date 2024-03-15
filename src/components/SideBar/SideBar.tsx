@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { FaArrowLeft, FaArrowRight, FaPenToSquare } from "react-icons/fa6";
 import { StateContext } from "@/providers/ContextProvider";
 import { chatTitles } from "@/utils/mock/chatTitles";
@@ -10,6 +10,13 @@ const SideBar = () => {
     const { title } = useParams()
     const chatTitle = title?.toString().split("%20").join(" ")
     const { showSidebar, setShowSideBar } = useContext(StateContext)
+
+    useEffect(() => {
+        const screen = window.screen.width
+        if (screen < 640) {
+            setShowSideBar(false)
+        }
+    }, [setShowSideBar])
 
     const sidebarHideStyle = {
         maxWidth: "0px",

@@ -9,6 +9,12 @@
     background-color: #2f2f2f;
     position: sticky;
     top: 0;
+    bottom: 0;
+}
+
+.activeChat:hover {
+    background-color: #2f2f2f !important;
+
 }
 
 .smoothBar::-webkit-scrollbar {
